@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Pick Up"))
         {
             other.gameObject.SetActive(false);
-            score = score + 1;
+            score = score + 10;
             SetCountText();
         }
     }
