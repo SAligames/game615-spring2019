@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7;
     public LayerMask groundLayer;
     private int score;
+    public Timer timer;
    
     
 
@@ -48,7 +49,14 @@ public class PlayerController : MonoBehaviour
             SetCountText();
         }
 
-                      
+        if (other.gameObject.CompareTag("More Time"))
+        {
+            Destroy(other.gameObject);
+            timer.timer += 10;
+            
+        }
+
+
     }
 
 
