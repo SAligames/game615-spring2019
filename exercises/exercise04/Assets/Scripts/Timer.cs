@@ -39,5 +39,6 @@ public class Timer : MonoBehaviour
             SceneManager.LoadScene("losescreen");
             
         }
-    }
+    }   
+    
 }

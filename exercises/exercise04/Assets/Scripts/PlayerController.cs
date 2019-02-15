@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7;
     public LayerMask groundLayer;
     private int score;
+   
+    
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +47,10 @@ public class PlayerController : MonoBehaviour
             score = score + 10;
             SetCountText();
         }
+
+                      
     }
+
 
     private bool IsGrounded()
     {
