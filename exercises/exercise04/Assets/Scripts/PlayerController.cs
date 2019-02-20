@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     public float jumpForce = 7;
     public LayerMask groundLayer;
     private int score;
+    private int unkownScore;
     public Timer timer;
    
     
@@ -22,6 +23,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         col = GetComponent<SphereCollider>();
         score = 0;
+        unkownScore = Random.Range(1, 51);
         SetCountText();
     }
 
@@ -54,6 +56,13 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             timer.timer += 10;
             
+        }
+
+        if (other.gameObject.CompareTag("Random Score"))
+        {
+            Destroy(other.gameObject);
+            score = score + unkownScore;
+            SetCountText();
         }
 
 
