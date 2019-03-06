@@ -3403,8 +3403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiText: {fileID: 758706743}
-  mainTimer: 30
-  timer: 30
+  mainTimer: 60
+  timer: 60
 --- !u!4 &472721581
 Transform:
   m_ObjectHideFlags: 0
