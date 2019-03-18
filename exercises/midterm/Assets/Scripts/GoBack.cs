@@ -7,7 +7,7 @@ public class GoBack : MonoBehaviour
     [SerializeField] private Transform player;
     [SerializeField] private Transform respawnPoint;
 
-    void OnTriggerEnter(Collider other)
+    public void OnTriggerEnter(Collider other)
     {
 
         player.transform.position = respawnPoint.transform.position;
