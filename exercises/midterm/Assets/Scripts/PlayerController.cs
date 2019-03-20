@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class PlayerController : MonoBehaviour
     float gravity = -15f;
     public Transform fpsCamera;
     float pitch = 0f;
+    private int score;
+    public Text scoreText;
+    public Timer timer;
 
     [Range(5, 15)]
     public float mouseSensitivity = 10f;
@@ -27,6 +31,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         cc = GetComponent<CharacterController>();
+        score = 0;
+        SetCountText();
     }
 
     // Update is called once per frame
@@ -79,5 +85,59 @@ public class PlayerController : MonoBehaviour
         pitch = Mathf.Clamp(pitch, -pitchRange, pitchRange);
         Quaternion camRotation = Quaternion.Euler(pitch, 0, 0);
         fpsCamera.localRotation = camRotation;
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Red"))
+        {
+            other.gameObject.SetActive(false);
+            score = score + 1;
+            SetCountText();
+        }
+        if (other.gameObject.CompareTag("Green"))
+        {
+            other.gameObject.SetActive(false);
+            score = score + 2;
+            SetCountText();
+        }
+        if (other.gameObject.CompareTag("Purple"))
+        {
+            other.gameObject.SetActive(false);
+            score = score + 5;
+            SetCountText();
+        }
+        if (other.gameObject.CompareTag("Yellow"))
+        {
+            other.gameObject.SetActive(false);
+            score = score + 10;
+            SetCountText();
+        }
+        if (other.gameObject.CompareTag("Pink"))
+        {
+            other.gameObject.SetActive(false);
+            score = score + 25;
+            SetCountText();
+        }
+        if(other.gameObject.CompareTag("Small Time"))
+        {
+            Destroy(other.gameObject);
+            timer.timer += 10;
+        }
+        if (other.gameObject.CompareTag("Medium Time"))
+        {
+            Destroy(other.gameObject);
+            timer.timer += 20;
+        }
+        if (other.gameObject.CompareTag("Large Time"))
+        {
+            Destroy(other.gameObject);
+            timer.timer += 30;
+        }
+    }
+
+    void SetCountText()
+    {
+        scoreText.text = "Score:" + score.ToString();
     }
 }

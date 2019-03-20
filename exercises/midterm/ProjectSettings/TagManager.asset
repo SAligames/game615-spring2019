@@ -3,7 +3,15 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Red
+  - Green
+  - Purple
+  - Yellow
+  - Pink
+  - Small Time
+  - Medium Time
+  - Large Time
   layers:
   - Default
   - TransparentFX
