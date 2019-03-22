@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/3D World.unity
     guid: 921852c1dcdadb1489f75c2c03e910ac
   - enabled: 1
+    path: Assets/Scenes/3DPlatformer.unity
+    guid: 1330f895785378e46abde3dcb7e309c4
+  - enabled: 1
     path: Assets/Scenes/WinScreen.unity
     guid: 27365bea11ece4a4f9551a14d2b04533
   - enabled: 1

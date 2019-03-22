@@ -6,15 +6,15 @@ public class PlatformAttach : MonoBehaviour
 {
     public GameObject Player;
     
-    void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject==Player)
+        if(other.gameObject == Player)
         {
             Player.transform.parent = transform;
         }        
     }
 
-    void OnTriggerExit(Collider other)
+    private void OnTriggerExit(Collider other)
     {
         if (other.gameObject == Player)
         {

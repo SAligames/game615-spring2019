@@ -12,6 +12,7 @@ TagManager:
   - Small Time
   - Medium Time
   - Large Time
+  - Death
   layers:
   - Default
   - TransparentFX
