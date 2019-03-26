@@ -23,7 +23,12 @@ public class PlayerConditions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+       if(score>=100)
+        {
+            lives = lives + 1;
+            score = 0;
+            SetCountText();
+        }
     }
 
     void OnTriggerEnter(Collider other)
