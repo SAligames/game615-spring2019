@@ -9,7 +9,8 @@ public class PlayerConditions : MonoBehaviour
     private int score;
     private int lives;
     public Text scoreText;
-    public Text lifeText;    
+    public Text lifeText;
+    public AudioSource collect;
     
 
     // Start is called before the first frame update
@@ -37,30 +38,35 @@ public class PlayerConditions : MonoBehaviour
         {
             other.gameObject.SetActive(false);
             score = score + 1;
+            collect.Play();
             SetCountText();
         }
         if (other.gameObject.CompareTag("Green"))
         {
             other.gameObject.SetActive(false);
             score = score + 2;
+            collect.Play();
             SetCountText();
         }
         if (other.gameObject.CompareTag("Purple"))
         {
             other.gameObject.SetActive(false);
             score = score + 5;
+            collect.Play();
             SetCountText();
         }
         if (other.gameObject.CompareTag("Yellow"))
         {
             other.gameObject.SetActive(false);
             score = score + 10;
+            collect.Play();
             SetCountText();
         }
         if (other.gameObject.CompareTag("Pink"))
         {
             other.gameObject.SetActive(false);
             score = score + 25;
+            collect.Play();
             SetCountText();
         }
         if(other.gameObject.CompareTag("Death"))
