@@ -13,6 +13,7 @@ TagManager:
   - Medium Time
   - Large Time
   - Death
+  - Despawn Platform
   layers:
   - Default
   - TransparentFX

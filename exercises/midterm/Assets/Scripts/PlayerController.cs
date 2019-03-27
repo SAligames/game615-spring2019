@@ -134,6 +134,10 @@ public class PlayerController : MonoBehaviour
             Destroy(other.gameObject);
             timer.timer += 30;
         }
+        if(other.gameObject.CompareTag("Despawn Platform"))
+        {
+            other.gameObject.SetActive(false);
+        }
     }
 
     void SetCountText()
