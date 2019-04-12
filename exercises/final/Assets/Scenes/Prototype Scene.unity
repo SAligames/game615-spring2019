@@ -122,9 +122,9 @@ GameObject:
   m_Component:
   - component: {fileID: 432549647}
   - component: {fileID: 432549646}
-  - component: {fileID: 432549645}
   - component: {fileID: 432549648}
   - component: {fileID: 432549649}
+  - component: {fileID: 432549645}
   m_Layer: 0
   m_Name: Player Sprite Sheet_0
   m_TagString: Untagged
@@ -141,10 +141,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 432549644}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bd1de493b4c7b84682ad338ac7185a2, type: 3}
+  m_Script: {fileID: 11500000, guid: b1a1761bab4ff1d418f544dc480b92cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 40
+  minGroundNormalY: 0.65
+  gravityModifier: 1
+  maxSpeed: 7
+  jumpTakeOffSpeed: 7
 --- !u!212 &432549646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -201,7 +204,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 432549644}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.3466005, y: -0.9187956, z: 0}
+  m_LocalPosition: {x: -4.3466005, y: -1.47, z: 0}
   m_LocalScale: {x: 9.9126, y: 9.9126, z: 9.9126}
   m_Children: []
   m_Father: {fileID: 0}

@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     
     float horizontalMove=0f;
     public float runSpeed = 40f;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
+        
     }
 
 }
