@@ -148,7 +148,7 @@ MonoBehaviour:
   minGroundNormalY: 0.65
   gravityModifier: 1
   maxSpeed: 7
-  jumpTakeOffSpeed: 7
+  jumpTakeOffSpeed: 20
 --- !u!212 &432549646
 SpriteRenderer:
   m_ObjectHideFlags: 0
