@@ -7,15 +7,25 @@ public class PlayerPlatformerController : PhysicsObject
 
     public float maxSpeed = 7;
     public float jumpTakeOffSpeed = 7;
+    public Material[] emotions;
+    
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
+    private SpriteRenderer myRenderer;
 
     // Use this for initialization
+    void Start()
+    {
+        myRenderer = GetComponent<SpriteRenderer>();
+        myRenderer.enabled = true;
+        myRenderer.sharedMaterial = emotions[0];
+    }
+
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();        
     }
 
     protected override void ComputeVelocity()
@@ -42,9 +52,23 @@ public class PlayerPlatformerController : PhysicsObject
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
 
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            if(myRenderer.sharedMaterial==emotions[0])
+            {
+                myRenderer.sharedMaterial = emotions[1];
+            }
+            else
+            {
+                myRenderer.sharedMaterial = emotions[0];
+            }
+        }
+
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
 
         targetVelocity = move * maxSpeed;
+
+        
     }
 }

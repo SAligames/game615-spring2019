@@ -68606,8 +68606,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
         type: 3}
+      propertyPath: emotions.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
       propertyPath: jumpTakeOffSpeed
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: anger.r
+      value: 0.6509434
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: anger.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: anger.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: emotions.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 69f03b534afe3744fb025cfe0755efa8, type: 2}
+    - target: {fileID: 3771753145633528394, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: emotions.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+    - target: {fileID: 3771753145633528407, guid: 164f5103ee777f34ea2bb03946c0bd65,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 164f5103ee777f34ea2bb03946c0bd65, type: 3}
