@@ -11,12 +11,23 @@ public class PlayerPlatformerController : PhysicsObject
     public float jumpTakeOffSpeed = 7;
     public Material[] emotions;
     public Text lifeText;
-    public GameObject HitBox;    
+    public GameObject HitBox;
+    public Slider angerBar;
+    public Slider joyBar;
+    public Slider healthBar;
+    public Transform player;
+    public Transform respawnPoint;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
     private SpriteRenderer myRenderer;
     private int lives;
+    private float maxAnger = 100;
+    private float maxJoy = 100;
+    private float currentAnger;
+    private float currentJoy;
+    private float maxHealth = 100;
+    private float currentHealth;
 
     // Use this for initialization
     void Start()
@@ -25,6 +36,13 @@ public class PlayerPlatformerController : PhysicsObject
         myRenderer.enabled = true;
         myRenderer.sharedMaterial = emotions[0];
         lives = 3;
+        healthBar.value = maxHealth;
+        currentHealth = maxHealth;
+        angerBar.value = maxAnger;
+        joyBar.value = maxJoy;
+        currentAnger = maxAnger;
+        currentJoy = maxJoy;
+        
         SetCountText();
     }
 
@@ -60,9 +78,11 @@ public class PlayerPlatformerController : PhysicsObject
 
         if(Input.GetKeyDown(KeyCode.E))
         {
-            if(myRenderer.sharedMaterial==emotions[0])
+            if(myRenderer.sharedMaterial==emotions[0] && angerBar.value>0)
             {
                 myRenderer.sharedMaterial = emotions[1];
+                angerBar.value -= 10f;
+                currentAnger = angerBar.value;
             }
             else
             {
@@ -72,9 +92,10 @@ public class PlayerPlatformerController : PhysicsObject
 
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (myRenderer.sharedMaterial == emotions[0])
+            if (myRenderer.sharedMaterial == emotions[0] && joyBar.value>0)
             {
                 myRenderer.sharedMaterial = emotions[2];
+                joyBar.value -= 20f;
                 maxSpeed = 10;
             }
             else
@@ -102,7 +123,13 @@ public class PlayerPlatformerController : PhysicsObject
         if(other.gameObject.CompareTag("Death"))
         {
             lives = lives - 1;
-            if(lives==0)
+            healthBar.value = maxHealth;
+            currentHealth = maxHealth;
+            angerBar.value = maxAnger;
+            joyBar.value = maxJoy;
+            currentAnger = maxAnger;
+            currentJoy = maxJoy;
+            if (lives==0)
             {
                 SceneManager.LoadScene("LoseScreen");
             }
@@ -110,8 +137,34 @@ public class PlayerPlatformerController : PhysicsObject
         }        
     }
 
+    void OnTriggerStay2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Damage")
+        {
+            healthBar.value -= 1f;
+            currentHealth = healthBar.value;
+            if (currentHealth == 0)
+            {
+                lives = lives - 1;
+                healthBar.value = maxHealth;
+                currentHealth = maxHealth;
+                angerBar.value = maxAnger;
+                joyBar.value = maxJoy;
+                currentAnger = maxAnger;
+                currentJoy = maxJoy;
+                SetCountText();
+                player.transform.position = respawnPoint.transform.position;
+            }
+            if (lives == 0)
+            {
+                SceneManager.LoadScene("LoseScreen");
+            }
+        }
+    }
+
     void SetCountText()
     {
-        lifeText.text = "Lives:"+ lives.ToString();
+        lifeText.text = lives.ToString();
     }
+
 }
