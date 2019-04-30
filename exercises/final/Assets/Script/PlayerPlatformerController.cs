@@ -129,9 +129,17 @@ public class PlayerPlatformerController : PhysicsObject
             joyBar.value = maxJoy;
             currentAnger = maxAnger;
             currentJoy = maxJoy;
-            if (lives==0)
+            if (lives<0)
             {
                 SceneManager.LoadScene("LoseScreen");
+            }
+            if(myRenderer.sharedMaterial=emotions[1])
+            {
+                myRenderer.sharedMaterial = emotions[0];
+            }
+            if (myRenderer.sharedMaterial = emotions[2])
+            {
+                myRenderer.sharedMaterial = emotions[0];
             }
             SetCountText();
         }        
