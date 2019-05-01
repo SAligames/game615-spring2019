@@ -97,11 +97,13 @@ public class PlayerPlatformerController : PhysicsObject
                 myRenderer.sharedMaterial = emotions[2];
                 joyBar.value -= 20f;
                 maxSpeed = 10;
+                jumpTakeOffSpeed = 15;
             }
             else
             {
                 myRenderer.sharedMaterial = emotions[0];
                 maxSpeed = 7;
+                jumpTakeOffSpeed = 12;
             }
         }
 
