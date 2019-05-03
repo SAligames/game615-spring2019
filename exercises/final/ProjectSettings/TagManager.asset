@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Death
   - Damage
+  - Gear
+  - Gold Gear
+  - Tiny Anger
+  - Average Anger
+  - Big Anger
+  - Large Anger
   layers:
   - Default
   - TransparentFX

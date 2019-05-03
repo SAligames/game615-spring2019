@@ -11,6 +11,7 @@ public class PlayerPlatformerController : PhysicsObject
     public float jumpTakeOffSpeed = 7;
     public Material[] emotions;
     public Text lifeText;
+    public Text scoreText;
     public GameObject HitBox;
     public Slider angerBar;
     public Slider joyBar;
@@ -22,6 +23,7 @@ public class PlayerPlatformerController : PhysicsObject
     private Animator animator;
     private SpriteRenderer myRenderer;
     private int lives;
+    private int score;
     private float maxAnger = 100;
     private float maxJoy = 100;
     private float currentAnger;
@@ -36,6 +38,7 @@ public class PlayerPlatformerController : PhysicsObject
         myRenderer.enabled = true;
         myRenderer.sharedMaterial = emotions[0];
         lives = 3;
+        score = 0;
         healthBar.value = maxHealth;
         currentHealth = maxHealth;
         angerBar.value = maxAnger;
@@ -107,6 +110,13 @@ public class PlayerPlatformerController : PhysicsObject
             }
         }
 
+        if(score>=50)
+        {
+            lives = lives + 1;
+            score = 0;
+            SetCountText();
+        }
+
         /*if(Input.GetKeyDown("Fire1"))
         {
             HitBox.SetActive(true);
@@ -131,7 +141,7 @@ public class PlayerPlatformerController : PhysicsObject
             joyBar.value = maxJoy;
             currentAnger = maxAnger;
             currentJoy = maxJoy;
-            if (lives<0)
+            if (lives==0)
             {
                 SceneManager.LoadScene("LoseScreen");
             }
@@ -144,7 +154,46 @@ public class PlayerPlatformerController : PhysicsObject
                 myRenderer.sharedMaterial = emotions[0];
             }
             SetCountText();
-        }        
+        }
+        
+        if(other.gameObject.CompareTag("Gear"))
+        {
+            score = score + 1;
+            other.gameObject.SetActive(false);
+            SetCountText();
+        }
+
+        if (other.gameObject.CompareTag("Gold Gear"))
+        {
+            score = score + 10;
+            other.gameObject.SetActive(false);
+            SetCountText();
+        }
+
+        if (other.gameObject.CompareTag("Tiny Anger"))
+        {
+            angerBar.value += 25f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);            
+        }
+        if (other.gameObject.CompareTag("Average Anger"))
+        {
+            angerBar.value += 50f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Big Anger"))
+        {
+            angerBar.value += 75f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Large Anger"))
+        {
+            angerBar.value += 100f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -175,6 +224,7 @@ public class PlayerPlatformerController : PhysicsObject
     void SetCountText()
     {
         lifeText.text = lives.ToString();
+        scoreText.text = "x" + score.ToString();
     }
 
 }
