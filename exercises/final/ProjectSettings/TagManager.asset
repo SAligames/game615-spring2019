@@ -12,6 +12,13 @@ TagManager:
   - Average Anger
   - Big Anger
   - Large Anger
+  - Tiny Joy
+  - Average Joy
+  - Big Joy
+  - Large Joy
+  - Light Box
+  - Heavy Box
+  - Box
   layers:
   - Default
   - TransparentFX

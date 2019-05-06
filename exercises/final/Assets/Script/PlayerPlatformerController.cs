@@ -8,16 +8,17 @@ public class PlayerPlatformerController : PhysicsObject
 {
 
     public float maxSpeed = 7;
-    public float jumpTakeOffSpeed = 7;
+    public float jumpTakeOffSpeed = 7;    
     public Material[] emotions;
     public Text lifeText;
-    public Text scoreText;
-    public GameObject HitBox;
+    public Text scoreText;    
     public Slider angerBar;
     public Slider joyBar;
     public Slider healthBar;
     public Transform player;
     public Transform respawnPoint;
+    public Collider2D attackTrigger;
+    public Collider2D secondAttackTrigger;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -30,6 +31,11 @@ public class PlayerPlatformerController : PhysicsObject
     private float currentJoy;
     private float maxHealth = 100;
     private float currentHealth;
+    private bool attack = false;
+    private float attackTimer = 5f;
+    private float attackCD = 0.3f;
+
+    protected float strength = 3;
 
     // Use this for initialization
     void Start()
@@ -52,7 +58,9 @@ public class PlayerPlatformerController : PhysicsObject
     void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();
+        attackTrigger.enabled = false;
+        secondAttackTrigger.enabled = false;
     }
 
     protected override void ComputeVelocity()
@@ -77,6 +85,7 @@ public class PlayerPlatformerController : PhysicsObject
         if (flipSprite)
         {
             spriteRenderer.flipX = !spriteRenderer.flipX;
+            
         }
 
         if(Input.GetKeyDown(KeyCode.E))
@@ -86,10 +95,12 @@ public class PlayerPlatformerController : PhysicsObject
                 myRenderer.sharedMaterial = emotions[1];
                 angerBar.value -= 10f;
                 currentAnger = angerBar.value;
+                strength = 50;
             }
             else
             {
                 myRenderer.sharedMaterial = emotions[0];
+                strength = 3;
             }
         }
 
@@ -117,13 +128,31 @@ public class PlayerPlatformerController : PhysicsObject
             SetCountText();
         }
 
-        /*if(Input.GetKeyDown("Fire1"))
+        if(Input.GetKeyDown(KeyCode.Mouse0) && !attack)
         {
-            HitBox.SetActive(true);
-        }*/
-
+            attack = true;
+            attackTimer = attackCD;
+            attackTrigger.enabled = true;
+            secondAttackTrigger.enabled = true;
+        }
+        
+        if(attack)
+        {
+            if(attackTimer>0)
+            {
+                attackTimer -= Time.deltaTime;
+            }
+            else
+            {
+                attack = false;
+                attackTrigger.enabled = false;
+                secondAttackTrigger.enabled = false;
+            }
+        }
+        
         animator.SetBool("grounded", grounded);
         animator.SetFloat("velocityX", Mathf.Abs(velocity.x) / maxSpeed);
+        animator.SetBool("attack", attack);
 
         targetVelocity = move * maxSpeed;
 
@@ -194,6 +223,31 @@ public class PlayerPlatformerController : PhysicsObject
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
         }
+
+        if (other.gameObject.CompareTag("Tiny Joy"))
+        {
+            joyBar.value += 25f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Average Joy"))
+        {
+            joyBar.value += 50f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Big Joy"))
+        {
+            joyBar.value += 75f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
+        if (other.gameObject.CompareTag("Large Joy"))
+        {
+            joyBar.value += 100f;
+            //currentAnger = angerBar;
+            other.gameObject.SetActive(false);
+        }
     }
 
     void OnTriggerStay2D(Collider2D col)
@@ -218,6 +272,19 @@ public class PlayerPlatformerController : PhysicsObject
             {
                 SceneManager.LoadScene("LoseScreen");
             }
+        }       
+    }
+
+    void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Light Box") && strength >= 3)
+        {
+            Destroy(col.gameObject);
+        }
+
+        if(col.gameObject.CompareTag("Heavy Box") && strength >= 50)
+        {
+            Destroy(col.gameObject);
         }
     }
 
