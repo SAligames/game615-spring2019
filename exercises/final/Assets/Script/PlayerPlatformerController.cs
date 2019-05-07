@@ -19,6 +19,7 @@ public class PlayerPlatformerController : PhysicsObject
     public Transform respawnPoint;
     public Collider2D attackTrigger;
     public Collider2D secondAttackTrigger;
+    public AudioSource collect;
 
     private SpriteRenderer spriteRenderer;
     private Animator animator;
@@ -93,7 +94,7 @@ public class PlayerPlatformerController : PhysicsObject
             if(myRenderer.sharedMaterial==emotions[0] && angerBar.value>0)
             {
                 myRenderer.sharedMaterial = emotions[1];
-                angerBar.value -= 10f;
+                angerBar.value -= 25f;
                 currentAnger = angerBar.value;
                 strength = 50;
             }
@@ -189,6 +190,7 @@ public class PlayerPlatformerController : PhysicsObject
         {
             score = score + 1;
             other.gameObject.SetActive(false);
+            collect.Play();
             SetCountText();
         }
 
@@ -196,6 +198,7 @@ public class PlayerPlatformerController : PhysicsObject
         {
             score = score + 10;
             other.gameObject.SetActive(false);
+            collect.Play();
             SetCountText();
         }
 
@@ -203,25 +206,29 @@ public class PlayerPlatformerController : PhysicsObject
         {
             angerBar.value += 25f;
             //currentAnger = angerBar;
-            other.gameObject.SetActive(false);            
+            other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Average Anger"))
         {
             angerBar.value += 50f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Big Anger"))
         {
             angerBar.value += 75f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Large Anger"))
         {
             angerBar.value += 100f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
 
         if (other.gameObject.CompareTag("Tiny Joy"))
@@ -229,24 +236,28 @@ public class PlayerPlatformerController : PhysicsObject
             joyBar.value += 25f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Average Joy"))
         {
             joyBar.value += 50f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Big Joy"))
         {
             joyBar.value += 75f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
         if (other.gameObject.CompareTag("Large Joy"))
         {
             joyBar.value += 100f;
             //currentAnger = angerBar;
             other.gameObject.SetActive(false);
+            collect.Play();
         }
     }
 

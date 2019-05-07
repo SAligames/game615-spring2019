@@ -12,9 +12,18 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenu.unity
     guid: 0d4dc0d47d770964f8c1639a2ca0de0d
   - enabled: 1
+    path: Assets/Scenes/Controls.unity
+    guid: 11e2374572cd8454eb4dda667150925b
+  - enabled: 1
+    path: Assets/Scenes/Funny Face.unity
+    guid: 32673adc296035147835d03f08597ca3
+  - enabled: 1
     path: Assets/Scenes/Factory Level.unity
     guid: a2781079a2b25b14793dbd84731af4b3
   - enabled: 1
     path: Assets/Scenes/LoseScreen.unity
     guid: fb46075e78cc05848bb31939175e9ffb
+  - enabled: 1
+    path: Assets/Scenes/EndScreen.unity
+    guid: fadca46c4b4855b448379a7130c72bd7
   m_configObjects: {}
