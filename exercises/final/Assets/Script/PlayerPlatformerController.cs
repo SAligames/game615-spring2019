@@ -98,6 +98,13 @@ public class PlayerPlatformerController : PhysicsObject
                 currentAnger = angerBar.value;
                 strength = 50;
             }
+            else if(myRenderer.sharedMaterial==emotions[2] && angerBar.value>0)
+            {
+                myRenderer.sharedMaterial = emotions[1];
+                angerBar.value -= 25f;
+                currentAnger = angerBar.value;
+                strength = 50;
+            }            
             else
             {
                 myRenderer.sharedMaterial = emotions[0];
@@ -108,6 +115,13 @@ public class PlayerPlatformerController : PhysicsObject
         if (Input.GetKeyDown(KeyCode.R))
         {
             if (myRenderer.sharedMaterial == emotions[0] && joyBar.value>0)
+            {
+                myRenderer.sharedMaterial = emotions[2];
+                joyBar.value -= 20f;
+                maxSpeed = 10;
+                jumpTakeOffSpeed = 15;
+            }
+            else if (myRenderer.sharedMaterial == emotions[1] && joyBar.value > 0)
             {
                 myRenderer.sharedMaterial = emotions[2];
                 joyBar.value -= 20f;
@@ -179,7 +193,7 @@ public class PlayerPlatformerController : PhysicsObject
             {
                 myRenderer.sharedMaterial = emotions[0];
             }
-            if (myRenderer.sharedMaterial = emotions[2])
+            else  if (myRenderer.sharedMaterial = emotions[2])
             {
                 myRenderer.sharedMaterial = emotions[0];
             }
@@ -278,6 +292,14 @@ public class PlayerPlatformerController : PhysicsObject
                 currentJoy = maxJoy;
                 SetCountText();
                 player.transform.position = respawnPoint.transform.position;
+                if (myRenderer.sharedMaterial = emotions[1])
+                {
+                    myRenderer.sharedMaterial = emotions[0];
+                }
+                else if (myRenderer.sharedMaterial = emotions[2])
+                {
+                    myRenderer.sharedMaterial = emotions[0];
+                }
             }
             if (lives == 0)
             {
